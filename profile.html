@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOXNAV | Account</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+        }
+
+        .auth-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .auth-toggle button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .auth-toggle button.active {
+            color: var(--accent-cyan);
+            border-bottom-color: var(--accent-cyan);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">VOX<span class="accent-text">NAV</span></div>
+            <a href="index.html" style="color: var(--accent-cyan); text-decoration: none;">&larr; Home</a>
+        </header>
+
+        <main class="section" style="text-align: center; max-width: 400px; margin: 0 auto;">
+            <h1 class="fade-in-up" id="form-title">Welcome <span class="accent-text">Back</span></h1>
+            <p class="fade-in-up" style="color: var(--text-secondary); margin-bottom: 2rem;">Sync your voice profile
+                across devices.</p>
+
+            <!-- Toggle -->
+            <div class="auth-toggle fade-in-up">
+                <button id="tab-login" class="active" onclick="switchTab('login')">Log In</button>
+                <button id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="feature-card fade-in-up" style="text-align: left;">
+                <div class="input-group">
+                    <label>Username / Email</label>
+                    <input type="text" id="login-username" placeholder="Enter username">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="••••••••">
+                </div>
+                <button class="btn-primary" style="width: 100%;" onclick="login()">Log In</button>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signup-form" class="feature-card fade-in-up" style="text-align: left; display: none;">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="signup-username" placeholder="Choose a username">
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter email">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Create password">
+                </div>
+                <button class="btn-primary" style="width: 100%;" onclick="signup()">Create Account</button>
+            </div>
+
+            <!-- Logged In View -->
+            <div id="account-view" style="display: none;" class="feature-card fade-in-up">
+                <div style="width: 80px; height: 80px; background: var(--accent-gradient); border-radius: 50%; margin: 0 auto 1rem auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: black; font-weight: bold;"
+                    id="avatar">
+                    U
+                </div>
+                <h2 id="display-name" style="margin-bottom: 0.5rem;">User</h2>
+                <p class="status-active"
+                    style="display: inline-block; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; border: 1px solid;">
+                    Active Member</p>
+                <br><br>
+                <button onclick="logout()"
+                    style="background: transparent; border: 1px solid #ff4444; color: #ff4444; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer;">
+                    Sign Out
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const user = localStorage.getItem('voxnav_username');
+            if (user) {
+                showAccount(user);
+            }
+        }
+
+        function switchTab(tab) {
+            if (tab === 'login') {
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('signup-form').style.display = 'none';
+                document.getElementById('tab-login').classList.add('active');
+                document.getElementById('tab-signup').classList.remove('active');
+                document.getElementById('form-title').innerHTML = 'Welcome <span class="accent-text">Back</span>';
+            } else {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('signup-form').style.display = 'block';
+                document.getElementById('tab-login').classList.remove('active');
+                document.getElementById('tab-signup').classList.add('active');
+                document.getElementById('form-title').innerHTML = 'Create <span class="accent-text">VOX ID</span>';
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            // Simulate login - in real app would check DB
+            if (!username) {
+                alert("Please enter your username.");
+                return;
+            }
+            // For prototype optimization: just logging in with whatever name provided
+            // or checking if it matches the "saved" one? 
+            // Let's just set it as the user.
+            localStorage.setItem('voxnav_username', username);
+            showAccount(username);
+        }
+
+        function signup() {
+            const username = document.getElementById('signup-username').value;
+            if (!username) {
+                alert("Please choose a username");
+                return;
+            }
+            localStorage.setItem('voxnav_username', username);
+            showAccount(username);
+        }
+
+        function showAccount(username) {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'none';
+            document.querySelector('.auth-toggle').style.display = 'none';
+
+            document.getElementById('form-title').innerText = "My Profile";
+            document.getElementById('account-view').style.display = 'block';
+            document.getElementById('display-name').innerText = username;
+            document.getElementById('avatar').innerText = username[0].toUpperCase();
+        }
+
+        function logout() {
+            if (confirm("Sign out?")) {
+                localStorage.removeItem('voxnav_username');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+
+</html>

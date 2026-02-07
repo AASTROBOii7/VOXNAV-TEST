@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOXNAV | Download</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div id="intro-overlay">
+        <div class="intro-logo">VOX<span class="accent-text">NAV</span></div>
+    </div>
+
+    <!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container">
+        <header>
+            <div class="logo">VOX<span class="accent-text">NAV</span></div>
+            <nav style="display: flex; align-items: center; gap: 1rem;">
+                <!-- Account Status -->
+                <div id="account-status"
+                    style="display: none; align-items: center; gap: 0.5rem; color: var(--accent-cyan);">
+                    <div
+                        style="width: 8px; height: 8px; background: var(--accent-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--accent-cyan);">
+                    </div>
+                    <span id="username-display">User</span>
+                </div>
+                <a href="profile.html" class="btn-secondary" id="profile-link">Create Account</a>
+            </nav>
+        </header>
+
+        <main class="hero">
+            <h1 class="fade-in-up" style="animation-delay: 0.2s;">Your Voice.<br><span
+                    class="accent-text">Unleashed.</span></h1>
+            <p class="fade-in-up" style="animation-delay: 0.4s;">The ultimate voice control suite for Windows.
+                Experience the freedom of hands-free computing.</p>
+
+            <button id="download-btn" class="btn-primary fade-in-up" style="animation-delay: 0.6s;"
+                onclick="downloadApp()">
+                Download for Windows
+            </button>
+            <p class="fade-in-up"
+                style="animation-delay: 0.8s; font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem; opacity: 0.7;">
+                v1.2.0 • Windows 10/11 • 64-bit</p>
+
+            <div class="stats fade-in-up" style="animation-delay: 1s;">
+                <div class="stat-item">
+                    <h3 style="font-size: 2em;">FAST</h3>
+                    <p>Low Latency</p>
+                </div>
+                <div class="stat-item">
+                    <h3 style="font-size: 2em;">SECURE</h3>
+                    <p>Local Processing</p>
+                </div>
+                <div class="stat-item">
+                    <h3 style="font-size: 2em;">SMART</h3>
+                    <p>Adaptive AI</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- New Detailed Section -->
+        <section class="section fade-in-up" style="animation-delay: 1.2s; text-align: center;">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Why <span class="accent-text">VOXNAV?</span></h2>
+            <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto 3rem auto; font-size: 1.1rem;">
+                Engineered for professionals, gamers, and accessibility advocates. VOXNAV bridges the gap between
+                thought and action.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div
+                        style="height: 80px; margin-bottom: 1rem; display: flex; justify-content: center; align-items: center;">
+                        <!-- SVG: Connection/Intuitive -->
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" class="feature-icon">
+                            <filter id="glow-1">
+                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                            <path
+                                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                                stroke="#00F3FF" stroke-width="1.5" filter="url(#glow-1)" />
+                            <path d="M12 8V16" stroke="#0066FF" stroke-width="1.5" stroke-linecap="round" />
+                            <path d="M8 12H16" stroke="#0066FF" stroke-width="1.5" stroke-linecap="round" />
+                            <circle cx="12" cy="12" r="2" fill="#00F3FF" />
+                        </svg>
+                    </div>
+                    <h3>Intuitive Interface</h3>
+                    <p>Designed with a human-centric philosophy. Seamlessly integrates into your existing workflow
+                        without the need for complex configuration.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div
+                        style="height: 80px; margin-bottom: 1rem; display: flex; justify-content: center; align-items: center;">
+                        <!-- SVG: Shield/Health -->
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" class="feature-icon">
+                            <filter id="glow-2">
+                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                            <path d="M12 22S4 18 4 12V6.00003L12 2L20 6.00003V12C20 18 12 22 12 22Z" stroke="#00F3FF"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                filter="url(#glow-2)" />
+                            <path d="M9 12L11 14L15 10" stroke="#0066FF" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M12 6V8" stroke="#0066FF" stroke-width="1.5" opacity="0.5" />
+                        </svg>
+                    </div>
+                    <h3>Health & Wellness</h3>
+                    <p>Proactive ergonomics. Significantly reduces physical strain by minimizing keyboard and mouse
+                        dependency, promoting a healthier digital lifestyle.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div
+                        style="height: 80px; margin-bottom: 1rem; display: flex; justify-content: center; align-items: center;">
+                        <!-- SVG: Lightning/Speed -->
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" class="feature-icon">
+                            <filter id="glow-3">
+                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="#00F3FF" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-3)" />
+                        </svg>
+                    </div>
+                    <h3>Hyper-Productivity</h3>
+                    <p>Execute complex workflows at the speed of thought. Launch applications and dictate content up to
+                        300% faster than manual input.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="features">
+            <h3
+                style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary); letter-spacing: 2px; text-transform: uppercase; font-size: 3em;">
+                Application Modules</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>System Control</h3>
+                    <p>Total OS authority. manage volume, brightness, window snapping, and file navigation with
+                        precision commands.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Workflow Automation</h3>
+                    <p>Build custom macros for creative suites like Adobe Creative Cloud and OBS Studio.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Gaming Overlay</h3>
+                    <p>Low-overhead voice overlay for streamers. Manage chat, scenes, and media without alt-tabbing.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer
+            style="text-align: center; padding: 4rem 2rem; color: var(--text-secondary); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4rem; background: linear-gradient(to bottom, transparent, rgba(0, 243, 255, 0.02));">
+            <div class="logo" style="margin-bottom: 1rem; font-size: 1.2rem;">VOX<span class="accent-text">NAV</span>
+            </div>
+            &copy; 2026 VOXNAV AI. All rights reserved. <br>
+            Avinash | Megh | Gopal <br>
+            <span style="opacity: 0.5;">Designed for the Future of Work.</span>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function downloadApp() {
+            const btn = document.getElementById('download-btn');
+
+            btn.innerText = "INITIALIZING...";
+            btn.style.opacity = "0.8";
+
+            setTimeout(() => {
+                alert("VOXNAV_Setup_x64.exe has begun downloading.");
+                btn.innerText = "DOWNLOAD AGAIN";
+                btn.style.opacity = "1";
+            }, 1500);
+        }
+    </script>
+</body>
+
+</html>
